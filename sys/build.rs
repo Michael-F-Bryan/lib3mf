@@ -11,14 +11,4 @@ fn main() {
 
     println!("cargo:include={}", dest.join("include").display());
     println!("cargo:lib={}", dest.join("lib").display());
-
-    let header_file = dest
-        .join("include")
-        .join("Bindings")
-        .join("C")
-        .join("lib3mf.h");
-    println!(
-        "cargo:rustc-env=C_BINDINGS_HEADER={}",
-        header_file.display()
-    );
 }

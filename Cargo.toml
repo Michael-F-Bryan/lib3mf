@@ -1,2 +1,2 @@
 [workspace]
-members = ["lib3mf", "sys"]
+members = ["lib3mf", "sys", "xtask"]

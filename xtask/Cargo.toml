@@ -1,13 +1,9 @@
 [package]
-name = "lib3mf-sys"
+name = "xtask"
 version = "0.1.0"
 edition = "2021"
-links = "3mf"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cfg-if = "1.0"
-
-[build-dependencies]
-cmake = "0.1.48"
+bindgen = "0.60.1"

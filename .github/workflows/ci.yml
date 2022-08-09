@@ -56,6 +56,13 @@ jobs:
         with:
           command: test
           args: --workspace --verbose --locked
+      - name: Ensure bindings are up to date
+        uses: actions-rs/cargo@v1
+        # Only check this on Linux for now
+        if: matrix.os == "linux"
+        with:
+          command: run
+          args: --package xtask -- generate-bindings
 
   lints:
     name: Linting and Formatting
