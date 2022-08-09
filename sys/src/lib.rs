@@ -8,6 +8,9 @@ cfg_if::cfg_if! {
     if #[cfg(all(target_os = "linux", target_arch = "x86_64"))] {
         #[path = "bindings.x86_64.linux.rs"]
         mod bindings;
+    } else if #[cfg(all(target_os = "macos", target_arch = "x86_64"))] {
+        #[path = "bindings.x86_64.macos.rs"]
+        mod bindings;
     } else {
         // Fall back to the linux bindings
         #[path = "bindings.x86_64.linux.rs"]
