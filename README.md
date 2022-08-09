@@ -1,6 +1,6 @@
 # Rust bindings to lib3mf
 
-[![Continuous integration](https://github.com/Michael-F-Bryan/lib3mf/workflows/Continuous%20integration/badge.svg?branch=main)](https://github.com/Michael-F-Bryan/lib3mf/actions)
+[![Continuous integration](https://github.com/Michael-F-Bryan/lib3mf/workflows/Continuous%20Integration/badge.svg?branch=main)](https://github.com/Michael-F-Bryan/lib3mf/actions)
 
 ([API Docs][api-docs])
 
