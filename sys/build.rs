@@ -1,14 +1,16 @@
 use std::path::PathBuf;
 
 fn main() {
-    let crate_dir = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap());
-    let vendor_dir = crate_dir.join("vendor").join("lib3mf");
+    if pkg_config::probe_library("3mf").is_ok() || vcpkg::find_package("3mf").is_ok() {
+        // It was found on the system somewhere. Prefer that version.
+        return;
+    }
 
-    let dest = cmake::build(&vendor_dir);
+    // fall back to compiling from source.
+    let crate_dir = PathBuf::from(std::env::var("CARGO_MANIFEST_DIR").unwrap());
+    let lib3mf_dir = crate_dir.join("vendor").join("lib3mf");
+    let dest = cmake::build(&lib3mf_dir);
 
     println!("cargo:rustc-link-search={}", dest.join("lib").display());
     println!("cargo:rustc-link-lib=3mf");
-
-    println!("cargo:include={}", dest.join("include").display());
-    println!("cargo:lib={}", dest.join("lib").display());
 }
