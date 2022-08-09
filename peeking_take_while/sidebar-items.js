@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":[["PeekingTakeWhile","The iterator returned by `peeking_take_while`."]],"trait":[["PeekableExt","The `Iterator` extension trait that provides the `peeking_take_while` method."]]};

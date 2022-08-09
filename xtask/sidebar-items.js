@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":[["generate_bindings","Use Matklad’s Self Modifying Code pattern to make sure our generated bindings are always up to date without adding a build-time dependency on bindgen."],["main",""],["usage",""]]};

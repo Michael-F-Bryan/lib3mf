@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["Kind",""]],"fn":[["remove_comments","Remove all comment tokens from a vector of tokens"]],"struct":[["Token","A single token in a C expression."]]};
