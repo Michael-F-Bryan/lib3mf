@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-    - main
+      - main
 
 env:
   DEFAULT_CRATE_NAME: lib3mf
@@ -21,6 +21,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Rust Cache
         uses: actions/cache@v3
         with:
@@ -60,6 +62,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Rust Cache
         uses: actions/cache@v3
         with:
@@ -94,6 +98,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Rust Cache
         uses: actions/cache@v3
         with:
@@ -125,4 +131,3 @@ jobs:
           branch: gh-pages
           folder: target/doc
           single-commit: true
-

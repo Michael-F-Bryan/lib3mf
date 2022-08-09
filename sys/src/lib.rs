@@ -50,11 +50,15 @@ pub use crate::bindings::*;
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use std::path::Path;
 
     const C_BINDINGS_HEADER: &str = env!("C_BINDINGS_HEADER");
 
+    /// Use Matklad's [*Self Modifying Code*][code] pattern to make sure our
+    /// generated bindings are always up to date without adding a build-time
+    /// dependency on bindgen.
+    ///
+    /// [code]: https://matklad.github.io/2022/03/26/self-modifying-code.html
     #[test]
     fn generated_bindings_are_up_to_date() {
         // Note: The header file ends in *.h, but clang will only treat it as
@@ -91,41 +95,5 @@ mod tests {
             "\"{}\" was out-of-date. Re-run the test and commit the changes",
             dest.display()
         );
-    }
-
-    #[test]
-    fn smoke_test() {
-        unsafe {
-            let mut model: Lib3MF_Model = std::ptr::null_mut();
-
-            // Create an empty model.
-            assert_eq!(
-                lib3mf_createmodel(&mut model),
-                LIB3MF_SUCCESS as crate::Lib3MFResult,
-            );
-
-            // create the reader
-            let mut reader: Lib3MF_Reader = std::ptr::null_mut();
-            assert_eq!(
-                lib3mf_model_queryreader(model, "3mf\0".as_ptr().cast(), &mut reader),
-                LIB3MF_SUCCESS as crate::Lib3MFResult,
-            );
-
-            let pyramid_file = Path::new(env!("CARGO_MANIFEST_DIR"))
-                .join("vendor/lib3mf/Tests/TestFiles/Reader/Pyramid.3mf");
-            let pyramid = std::fs::read(&pyramid_file).unwrap();
-
-            assert_eq!(
-                lib3mf_reader_readfrombuffer(reader, pyramid.len() as _, pyramid.as_ptr()),
-                LIB3MF_SUCCESS as crate::Lib3MFResult,
-            );
-
-            // Free everything afterwards
-            assert_eq!(
-                lib3mf_release(reader),
-                LIB3MF_SUCCESS as crate::Lib3MFResult,
-            );
-            assert_eq!(lib3mf_release(model), LIB3MF_SUCCESS as crate::Lib3MFResult);
-        }
     }
 }
