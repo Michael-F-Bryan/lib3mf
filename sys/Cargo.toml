@@ -2,7 +2,14 @@
 name = "lib3mf-sys"
 version = "0.1.0"
 edition = "2021"
+links = "3mf"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[build-dependencies]
+cmake = "0.1.48"
+
+[dev-dependencies]
+bindgen = "0.60.1"
